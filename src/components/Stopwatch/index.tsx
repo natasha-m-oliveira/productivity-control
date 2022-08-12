@@ -1,29 +1,22 @@
-import { TasksContext, useTasksContext } from "common/context/Tasks";
-import { durationToSeconds } from "common/utils/time";
-import { useEffect } from "react";
-import { useContext } from "react";
-import Button from "../Button";
-import Clock from "./Clock";
-import style from "./Stopwatch.module.scss";
+import { TasksContext, useTasksContext } from 'common/context/Tasks';
+import { useContext } from 'react';
+import Button from '../Button';
+import Clock from './Clock';
+import style from './Stopwatch.module.scss';
 
 function Stopwatch() {
-  const { stopwatch, setStopwatch } = useContext(TasksContext);
-  const selectedTask = useTasksContext().findSelectedTask();
-  //como o watch do vuejs
-  useEffect(() => {
-    // verifica se selectedtask é um valor true para então acessar duration
-    if (selectedTask?.duration) {
-      setStopwatch(durationToSeconds(selectedTask.duration));
-    }
-  }, [selectedTask]);
+  const { stopwatch } = useContext(TasksContext);
+  const { decrement } = useTasksContext();
+  const handleClick = () => {
+    decrement(stopwatch);
+  };
   return (
     <div className={style.stopwatch}>
       <p className={style.title}>Escolha um card e inicie o cronômetro.</p>
-      <p>Tempo: {stopwatch}</p>
       <div className={style.wrapperClock}>
         <Clock />
       </div>
-      <Button>Começar!</Button>
+      <Button onClick={handleClick}>Começar!</Button>
     </div>
   );
 }
