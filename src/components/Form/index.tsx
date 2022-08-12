@@ -1,29 +1,20 @@
-import { useTasksContext } from "context/Tasks";
-import React, { useState } from "react";
+import { TasksContext, useTasksContext } from "common/context/Tasks";
+import React, { useContext, useState } from "react";
 import Button from "../Button";
 import style from "./Form.module.scss";
 
 function Form() {
-  const { addTask, setTasks } = useTasksContext();
-  const [newTask, setNewTask] = useState({
-    task: "",
-    duration: "00:00",
-  });
+  const { addTask } = useTasksContext();
+  const { newTask, setNewTask } = useContext(TasksContext);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // setTasks([{
-    //   ...newTask,
-    //   selected: false,
-    //   completed: false,
-    //   id: "1",
-    // }])
     addTask(newTask);
     setNewTask({
       task: "",
       duration: "00:00",
     });
-  }
+  };
   return (
     <form className={style.newTask} onSubmit={handleSubmit}>
       <div className={style.inputWrapper}>

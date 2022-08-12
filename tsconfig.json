@@ -5,7 +5,7 @@
       "components": ["components"],
       "pages": ["pages"],
       "types": ["types"],
-      "context": ["context"],
+      "common": ["common"],
   },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

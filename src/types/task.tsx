@@ -1,6 +1,6 @@
-interface ITask {
-    task: string,
-    duration: string,
+import INewTask from "./newTask";
+
+interface ITask  extends INewTask {
     selected: boolean,
     completed: boolean,
     id: string

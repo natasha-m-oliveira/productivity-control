@@ -1,9 +1,10 @@
-import { useTasksContext } from "context/Tasks";
+import { TasksContext } from "common/context/Tasks";
+import { useContext } from "react";
 import Item from "./Item";
-import style from "./style.module.scss";
+import style from "./List.module.scss";
 
 function Lista() {
-  const { tasks } = useTasksContext();
+  const { tasks } = useContext(TasksContext);
   return (
     <aside className={style.tasksList}>
       <h2>Atividades do dia</h2>
